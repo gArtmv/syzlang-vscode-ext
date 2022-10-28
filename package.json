@@ -1,0 +1,31 @@
+{
+  "name": "syzlang-extension",
+  "displayName": "syz-lang extension",
+  "description": "Syntax highlighter for syzkaller descriptions file.",
+  "version": "0.0.1",
+  "publisher": "AndreyArtemiev",
+  "icon": "icon.png",
+  "repository": { "url": "https://github.com/gArtmv/syzlang-vscode-ext" },
+  "author": {
+    "name": "Andrey Artemiev"
+  },
+  "engines": {
+    "vscode": "^1.72.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "syzlang",
+      "aliases": ["syz-lang", "syzlang"],
+      "extensions": [".txt"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "syzlang",
+      "scopeName": "source.syzlang",
+      "path": "./syntaxes/syzlang.tmLanguage.json"
+    }]
+  }
+}

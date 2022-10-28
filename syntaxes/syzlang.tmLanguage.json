@@ -1,0 +1,101 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "syz-lang",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#types"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#includes"
+		},
+		{
+			"include": "#file_operations"
+		},
+		{
+			"include": "#specifiers"
+		},
+		{
+			"include": "#meta"
+		},
+		{
+			"include": "#complex_types"
+		}
+	],
+	"repository": {
+		"complex_types":{
+			"name" : "entity.name.class",
+			"match": "(\\w+\\d* {)"
+		},
+		"comments" :{
+			"patterns": [{
+				"begin": "#",
+				"beginCaptures": {
+					"0" : {
+						"name" : "comment.line.syz-lang"
+					}
+				},
+				"end": "\\n",
+				"name":"comment.line.syz-lang"
+			}]
+		},
+		"includes" :
+			{
+				"match": "(include <.+>)",
+				"name": "storage.type.class.syz-lang"
+			},
+		"types" : {
+			"match": "\\b(int8|int16|int32|int64|intptr|ptr|ptr64|string|stringnoz|fd)\\b",
+			"name" : "entity.name.type.syz-lang"
+		},
+		"specifiers" :
+			{
+				"match": "(\\[inout|\\[in\\W|\\[out|flags\\[)",
+				"name": "entity.name.tag"
+			},
+		"file_operations": {
+			"patterns": [
+				{
+					"name": "entity.name.function.syz-lang",
+					"match": "(\\w+\\d*\\$)"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.syzlang",
+					"match": "\\b(array|const|resource|type|glob|fmt|len|bytesize|bitsize|offsetof|vma|vma64|proc|text|void)\\b"
+				},
+				{
+					"name":"entity.name.tag",
+					"match": "(\\w+\\d*\\()"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.syzlang",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.syzlang",
+					"match": "\\\\."
+				}
+			]
+		},
+		"meta": {
+			"name": "markup.bold.sylang",
+			"match": "(meta.+\\n)"
+		}
+	},
+	"scopeName": "source.syzlang"
+}
